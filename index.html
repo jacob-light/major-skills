@@ -12,7 +12,7 @@
 <meta name="author" content="Jacob Light" />
 
 
-<title>How Majors Evolve</title>
+<title>index</title>
 
 <script src="site_libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -298,35 +298,16 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">How Majors Evolve</h1>
+<h1 class="title toc-ignore">index</h1>
 <h4 class="author">Jacob Light</h4>
 <h4 class="date">6/25/2020</h4>
 
 </div>
 
 
-<p>The “Major Skills” project asks how colleges and universities respond to labor market shocks. Students choose the college they will attend and their college major to maximize their return on college attendance. The skills a student develops in college, as well as her innate aptitude, are valuable in the labor market. However, students face some uncertainty in their return on investment: globalization, the economy, and technology may increase or decrease the return to skills developed in college throughout a worker’s career. Universities compete to attract high aptitude students and equip these students with the skills to excel in the labor force.</p>
-<p>As skill demand in the labor force changes, how do universities adapt their course offerings? In practice, an institution can adjust course offerings along two dimensions: an <strong>intensive margin</strong>, through which an institution changes the content of an existing course, or an <strong>extensive margin</strong>, through which an institution introduces a new course. Below, I use the course catalog data to evaluate the extent to which institutions have evolved along intensive and extensive margins.</p>
-<p><strong>Intensive Margin Responses</strong>: First, I calculate the survival rate for course descriptions over a ten year period. I subset to courses offered continuously between 2010-11 and 2019-20. The survival function plots the share of courses with unchanged course description in each year 2010-11. Panel A plots the survival rate across all courses, while Panel B plots survival rates for five categories of college majors. The figures suggest that existing courses evolve slowly; the median course description is updated once per eight years. Survival rates are comparable across majors.</p>
-<div class="figure" style="text-align: center">
-<p class="caption">
-Course Description Survival Function
-</p>
-<img src="images/surv_paper.png" alt="Course Description Survival Function" width="100%" />
-</div>
-<p><strong>Extensive Margin Responses</strong>: Next, I calculate adjustment along the extensive margin through new course offerings. The figure counts the number of courses offered in each academic year for the panel of institutions covered 2010-2020 in my dataset, normalized to the number of courses offered in 2010-11. Panel A plots the overall trend in course offerings, which have steadily increased over time. The upward trend is consistent with increasing college enrollment, competition for smaller course sizes, and expanded access to colleges through the Common App. Panel B plots separate trends by major category. Growth in course offerings for STEM and Computer Science classes is most striking. The growth in Computer Science courses coincides with the introduction of information and data science courses at many colleges, as well as steadily increasing growth in the share of college graduates who major in STEM fields.</p>
-<div class="figure" style="text-align: center">
-<p class="caption">
-Growth in Course Offerings
-</p>
-<img src="images/growth_paper.png" alt="Growth in Course Offerings" width="100%" />
-</div>
-<p><strong>Takeaways</strong>:</p>
-<ol style="list-style-type: decimal">
-<li><p>Existing courses in each category of college major evolve gradually. The typical course description is updated approximately once every seven years, suggesting that a long panel is necessary to document content changes over time</p></li>
-<li><p>New course offerings have grown substantially in the last ten years. The general upward trend coincides with growing college enrollment and competition for smaller class sizes</p></li>
-<li><p>The explosion of computer science courses over the last five years is particularly striking. Much of this growth arises from the introduction of data science and machine learning courses, contemporaneous with growth in labor market skill demand</p></li>
-</ol>
+<p>In this proposal, I describe an ongoing data collection exercise to evaluate changes in the skill content of college majors over time. The exercise is inspired by two recent data sources of high impact in labor economics research. First, task composition data from O*NET have created a common unit to compare overlapping skills across occupations and measure the evolution of occupations over time (Autor, Levy, and Murnane, 2003; Autor and Acemoglu, 2011). Second, detailed job listing data collected by Burning Glass Technologies capture the skills demanded by employers at specific points in time and in specific locations. These data sources have facilitated analysis of the dynamism and diversity of occupations, previously studied in coarse and disconnected categories. Recent findings that labor market demand for skills has increased over time, that demand spiked in regions affected most by the Great Recession (Hershbein and Kahn, 2018), and that different skills experience different profiles of return over time (Deming and Noray, 2019) are only possible because of these data innovations.</p>
+<p>As skill demand in the labor market grows, whether and how labor market entrants develop these skills is a natural, yet open, question. Similarly-detailed analysis of heterogeneity in the skill content of different types of college majors does not exist, largely because detailed microdata have not been available. Economic models, therefore, must often assume that the effect of a college degree (on earnings, employment, etc.) is homogeneous, despite substantial evidence that the economic returns to a college degree vary across major, across institution, and across time. Understanding the specific skills developed in a college major informs the occupations for which college graduates are properly trained and the labor market premia for developing these skills, while the broader skill mix of courses offered by an institution can measure a university’s responsiveness to local or national labor market fluctuations.</p>
+<p>To characterize the existence and analyze the consequences of skill heterogeneity of college majors, I propose a unique dataset to study changes in the skill content of college majors over time: course descriptions scraped from college course catalogs. Course catalogs provide a snapshot of a university’s offerings at a point in time with appealing characteristics that are valuable for research. First, the wide availability of course catalogs makes it possible to build a large, nationally representative data sample. Second, the common structure of entries in course catalogs ensures that the extracted data are comparable across time and institutions. Third, catalogs expose networks of courses (e.g. through cross-listing or prerequisites) useful for demonstrating overlap or polarization of disciplines over time.</p>
 
 
 
