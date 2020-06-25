@@ -1,0 +1,17 @@
+name: "Jacob Light"
+output_dir: "."
+navbar:
+  title: "Major Skills"
+  left:
+    - text: "The Data"
+      href: data.html
+    - text: "Evolution"
+      href: evolution.html
+    - text: "Skills"
+      href: skill.html
+    - text: "Networks"
+      href: networks.html
+output:
+  html_document:
+    theme: paper
+    css: 'styles.css'

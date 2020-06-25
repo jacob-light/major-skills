@@ -1,0 +1,16 @@
+---
+title: "index"
+author: "Jacob Light"
+date: "6/25/2020"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+In this proposal, I describe an ongoing data collection exercise to evaluate changes in the skill content of college majors over time. The exercise is inspired by two recent data sources of high impact in labor economics research. First, task composition data from O*NET have created a common unit to compare overlapping skills across occupations and measure the evolution of occupations over time (Autor, Levy, and Murnane, 2003; Autor and Acemoglu, 2011). Second, detailed job listing data collected by Burning Glass Technologies capture the skills demanded by employers at specific points in time and in specific locations. These data sources have facilitated analysis of the dynamism and diversity of occupations, previously studied in coarse and disconnected categories. Recent findings that labor market demand for skills has increased over time, that demand spiked in regions affected most by the Great Recession (Hershbein and Kahn, 2018), and that different skills experience different profiles of return over time (Deming and Noray, 2019) are only possible because of these data innovations. 
+
+As skill demand in the labor market grows, whether and how labor market entrants develop these skills is a natural, yet open, question. Similarly-detailed analysis of heterogeneity in the skill content of different types of college majors does not exist, largely because detailed microdata have not been available. Economic models, therefore, must often assume that the effect of a college degree (on earnings, employment, etc.) is homogeneous, despite substantial evidence that the economic returns to a college degree vary across major, across institution, and across time. Understanding the specific skills developed in a college major informs the occupations for which college graduates are properly trained and the labor market premia for developing these skills, while the broader skill mix of courses offered by an institution can measure a university’s responsiveness to local or national labor market fluctuations. 
+
+To characterize the existence and analyze the consequences of skill heterogeneity of college majors, I propose a unique dataset to study changes in the skill content of college majors over time: course descriptions scraped from college course catalogs. Course catalogs provide a snapshot of a university’s offerings at a point in time with appealing characteristics that are valuable for research. First, the wide availability of course catalogs makes it possible to build a large, nationally representative data sample. Second, the common structure of entries in course catalogs ensures that the extracted data are comparable across time and institutions. Third, catalogs expose networks of courses (e.g. through cross-listing or prerequisites) useful for demonstrating overlap or polarization of disciplines over time. 
