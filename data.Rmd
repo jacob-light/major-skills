@@ -1,7 +1,5 @@
 ---
-title: "Data"
-author: "Jacob Light"
-date: "6/25/2020"
+title: "The Data"
 output: html_document
 fig_caption: TRUE
 ---
@@ -10,8 +8,6 @@ fig_caption: TRUE
   library(knitr)
   knitr::opts_chunk$set(echo = TRUE)
 ```
-
-
 
 The dataset underlying this project contains course descriptions from a growing sample that currently covers 5\% of non-profit degree granting colleges and universities in the United States. Colleges included in the sample are diverse along numerous dimensions. The sample contains institutions from more than 30 states, public and private institutions, two- and four-year institutions, and institutions with a wide range of student enrollment. These sources of heterogeneity will be useful for understanding how outcomes student outcomes vary by institution characteristics, while allowing me to weight the sample to better represent the average college in the United States.
 
@@ -27,3 +23,11 @@ For each course, I observe the: course title, course description, academic depar
 ```{r ex, echo = FALSE, fig.show = "hold", out.width = "80%", fig.align = "center"}
   knitr::include_graphics('images/Example.png')
 ```
+
+## Takeaways:
+
+1. New, exciting dataset currently contains a diverse set of institutions and covers primarily 2010-2020.
+
+2. Working on expanding and diversifying the dataset.
+
+3. Course catalogs widely available online, in common format for easy scraping.

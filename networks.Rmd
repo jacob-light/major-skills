@@ -1,7 +1,5 @@
 ---
 title: "Networks"
-author: "Jacob Light"
-date: "6/25/2020"
 output: html_document
 ---
 
@@ -9,22 +7,190 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+```{r ld, include = FALSE}
+  path = "C:/Users/jligh/Box/Projects/Major Skills/Analysis/Course Guide Scraping"
+  # setwd(path)
+  options(scipen=999)
+  
+  library(tidyr)
+  library(dplyr)
+  library(stringr)
+  library(readr)
+  library(ggplot2)
+  library(rmarkdown)
+  library(kableExtra)
+  library(readxl)
+  library(tidygraph)
+  # library(ggraph)
+  library(network)
+  library(visNetwork)
+  
+############################
+# LOAD DATA
+############################
+  old_nodes <- readRDS(paste0(path, '/Intermediate/_NETWORKS/2020.06.28 Old Nodes.RDS'))
+  new_nodes <- readRDS(paste0(path, '/Intermediate/_NETWORKS/2020.06.23 New Nodes.RDS'))
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+############################
+# FUNCTIONS
+############################
+  nodemaker <- function(d) {
+    # Node list
+    courses <- d %>%
+      filter(is.na(layer_1) == FALSE) %>%
+      distinct(course_id) %>%
+      select(course_id) %>%
+      rename(label = course_id)
+    reqs <- d %>%
+      filter(is.na(layer_1) == FALSE) %>%
+      distinct(layer_1) %>%
+      select(layer_1) %>%
+      rename(label = layer_1)  
+    nodes <- full_join(courses, reqs, by = 'label') %>%
+      mutate(id = seq(1, dim(.)[1]))
+    
+    # Edges
+    edges <- d %>%
+      filter(is.na(layer_1) == FALSE) %>%
+      select(course_id, layer_1) %>%
+      rename(course = course_id, req = layer_1)
+    edges <- left_join(edges %>% 
+                         rename(label = course), 
+                       nodes, by = 'label') %>%
+      rename(course = id) %>%
+      select(-label)
+    edges <- left_join(edges %>% 
+                         rename(label = req), 
+                       nodes, by = 'label') %>%
+      rename(req = id) %>%
+      select(-label)
+    out <- list(nodes = nodes, edges = edges)
+    
+    return(out)
+  }
+  
+  example_builder <- function(x, course, degs) {
+    x_search <- x[['nodes']]$id[x[['nodes']]$label == course]
+    iter <- 0
+    while(iter < degs) {
+      iter <- iter + 1
+      x_search <- c(x_search,
+                    x[['edges']]$course[x[['edges']]$req %in% x_search]) %>%
+        # x[['edges']]$req[x[['edges']]$course %in% x_search] %>%
+        unique()
+    }
+    out <- list()
+    out[['edges']] <- x[['edges']][x[['edges']]$course %in% x_search, ] %>%
+      rename(layer_1 = req, course_id = course)
+    edg <- nodemaker(out[['edges']])
+    out[['edges']] <- edg[['edges']] %>%
+      rename(from = req, to = course) %>%
+      filter(from != to) %>%
+      unique()
+    out[['nodes']] <- inner_join(x[['nodes']][x[['nodes']]$id %in% x_search, ] %>%
+                                   rename(course = label, label = id),
+                                 edg[['nodes']], by = 'label') %>%
+      filter((id %in% c(out[['edges']]$to, out[['edges']]$from))) %>%
+      select(-label) %>%
+      rename(label = course) %>%
+      mutate(group = substr(label, 1, str_locate(label, ' ') - 1)) %>%
+      mutate(shape = if_else(label == course, 'square', 'dot'))
+    
+    ret <- visNetwork(out$nodes,out$edges) %>%
+      visLegend()
+    return(ret)
+  }
+  
+  degs <- 3
+  
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-summary(cars)
 ```
 
-## Including Plots
 
-You can also embed plots, for example:
+In a previous blog post, I showed that course offerings at colleges and universities have expanded by approximately 15\% over the last decade, with growth concentrated in STEM and computer science courses. Labor demand for STEM skills is high, but the fast pace of technological change leads to quicker decay of these skills (Deming and Noray, 2020). Skills on the cutting edge of research or industrial application when a student graduates may become outmoded ten years into her career. In this post, I use networks of courses to analyze descriptively how the importance of foundational skills has evolved over time. I take course catalogs from the University of Michigan covering the period 1980-2020 as a case study.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+
+## Calculus I
+
+First, I document growth in the network of courses that enforce MATH 115 (Calculus I) as a pre-requisite. For Calc I and subsequent examples, I plot the network of courses within `r degs` degrees of dependency of the central node (denoted by a square, colors denote different departments). I sample from three academic years: 35 years ago (1984-85), 15 years ago (2004-05), and 5 years ago (2014-15). The results are robust to choice of years (the years selected include both the year my parents (84-85) and I (14-15) graduated from UM). In 1984-85, Calc I was a relatively specialized course, required only for upper-level economics, computer science, and biology courses. The University of Michigan offered a robust set of math courses below Calc I, such as algebra, pre-calculus, and trigonometry.
+
+```{r calc1, echo = FALSE, fig.cap = 'Calc I Dependencies, 1984-85', fig.topcaption = TRUE, fig.align = 'center'}
+  example_builder(x = old_nodes[[1]],
+                  course = 'MATH 115', degs)
+
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+By 2004-05, the courses dependent on Calc I had expanded dramatically. Higher rates of college attendance and increased course offerings increase the number of courses in already-Calc dependent fields, such as economics and computer science. Other fields, notably chemistry, became more heavily dependent on calculus. The network grow more complicated generally, a result of expanded upper-level course offerings.
+
+```{r calc1a, echo = FALSE, fig.cap = 'Calc I Dependencies, 2004-05', fig.topcaption = TRUE, fig.align = 'center'}
+  example_builder(x = new_nodes[[1]], course = 'MATH 115', degs)
+
+```
+
+Notably, by 2014-15, some of the new courses that depend on Calc I are outside of the STEM field, such as upper-level psychology and education courses. Over the last 40 years, basic calculus has transitioned from a somewhat niche skill set for STEM and economics students to a fundamental skill for students in STEM and, increasingly, social science. This trend may benefit students who develop a general, applicable skill in a course they might otherwise not take. From an equity perspective, however, the rising dependence on Calc I may be concerning for students from communities that lack the resources to offer advanced math.
+
+```{r calc1b, echo = FALSE, fig.cap = 'Calc I Dependencies, 2014-15', fig.topcaption = TRUE, fig.align = 'center'}
+  example_builder(x = new_nodes[[11]], course = 'MATH 115', degs)
+
+```
+
+## Intro to Psychology
+
+The preceding analysis suggests that the rising importance of Calc I can be explained by both growth in course offerings and increasing importance of calculus skills across disciplines. I next highlight the network of courses that depend on Michigan's Intro to Psychology course (PSYCH 172 in 1984-85, PSYCH 111 in 2004-05 and 2014-15) to demonstrate a highly connected introductory course whose growth in importance is explained primarily by expanding course offerings. Initially, the set of courses that depend on Intro to Psychology are almost exclusively in the psychology department. 
+
+```{r psych1, echo = FALSE, fig.cap = 'Intro to Psychology Dependencies, 1984-85', fig.topcaption = TRUE, fig.align = 'center'}
+  example_builder(x = old_nodes[[5]], course = 'PSYCH 172', degs)
+
+```
+
+By 2004-05, upper-level course offerings in psychology had expanded substantially. As a result, the network of courses that depend on Intro to Psychology grew in the intervening 20 years. However, the set of courses in the Intro to Psychology network are almost entirely courses in psychology.
+
+```{r psych1a, echo = FALSE, fig.cap = 'Intro to Psychology Dependencies, 2004-05', fig.topcaption = TRUE, fig.align = 'center'}
+  example_builder(x = new_nodes[[1]], course = 'PSYCH 111', degs)
+
+```
+
+The network in 2014-15 is much the same - expanded course offerings, primarily in the psychology department. Thus, the evolution of courses deriving from Intro to Psychology should confirm that Intro to Psychology is a foundational course for any student interested in studying psychology, and that course offerings in psychology have grown dramatically over time, but that Intro to Psychology is a relatively specialized introductory course and a requirement primarily for students studying psychology.
+
+```{r psych1b, echo = FALSE, fig.cap = 'Intro to Psychology Dependencies, 2014-15', fig.topcaption = TRUE, fig.align = 'center'}
+  example_builder(x = new_nodes[[11]], course = 'PSYCH 111', degs)
+
+```
+
+
+## Intro to Computer Programming
+
+The following networks show the rising significance of Michigan's Intro to Computer Science course (EECS 270 in 1984-85, 183 as of 2004-05) as a fundamental course in recent years. Growth between 1984-85 to 2004-05 is driven primarily by expanded offerings in the electrical engineering and computer science (EECS) department. Between 2004-05 and 2014-15, fields outside of computer science began to offer courses that built on computer programming skills - particularly math, physics, and information science (a fledgling undergraduate program in 2014-15). The computer science department also redesigned the introductory sequence to enforce Michigan's intro to programming as a specific prerequisite for many advanced courses, rather than a general background in computer programming.
+
+```{r cs, echo = FALSE, fig.cap = 'Calc I Dependencies, 1984-85', fig.topcaption = TRUE, fig.align = 'center'}
+  example_builder(x = old_nodes[['1984-1985']], course = 'EECS 270', degs)
+
+```
+
+
+```{r cs1a, echo = FALSE, fig.cap = 'Intro to CS Dependenciess, 2004-05', fig.topcaption = TRUE, fig.align = 'center'}
+  example_builder(x = new_nodes[[1]], course = 'EECS 183', degs)
+
+```
+
+
+```{r cs1b, echo = FALSE, fig.cap = 'Intro to CS Dependencies, 2014-15', fig.topcaption = TRUE, fig.align = 'center'}
+  example_builder(x = new_nodes[[11]], course = 'EECS 183', degs)
+
+```
+
+As I demonstrated in previous analysis, course offerings in computer science have exploded over the last five years. To corroborate this finding from my larger course description dataset, I map the network of courses dependent on Intro to Computer Science in 2019-20. Over the last 5 years, upper-level computer science electives have expanded dramatically. Upper level students in the natural sciences, math, linguistics, and economics must now take Intro to Computer Science to unlock certain elective courses. Tracking further growth in dependence on basic computer programming will have interesting consequences for future cohorts of students and for the broader labor market.
+
+```{r cs1c, echo = FALSE, fig.cap = 'Intro to CS Dependencies, 2019-20', fig.topcaption = TRUE, fig.align = 'center'}
+  example_builder(x = new_nodes[[16]], course = 'EECS 183', degs)
+
+```
+
+## Takeaways:
+
+1. Course offerings have expanded dramatically over the last 40 years. Much of the growth is concentrated among upper-level electives.
+
+2. Over the last 40 years, Calc I has evolved from a niche skill for certain STEM majors to a fundamental skill for students in many disciplines. The increasing importance of Calc I as a prerequisite for subsequent courses equips graduates with analytical and cognitive skills with diverse applications in the labor market, but also has equity/opportunity consequences for students entering college with weaker math backgrounds. 
+
+3. The share majors that require some background in computer programming has expanded dramatically over the last 5 years, reminiscient of the rise of Calc I as a fundamental skill.

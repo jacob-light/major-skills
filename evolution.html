@@ -9,7 +9,6 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Jacob Light" />
 
 
 <title>How Majors Evolve</title>
@@ -286,6 +285,9 @@ $(document).ready(function () {
 <li>
   <a href="networks.html">Networks</a>
 </li>
+<li>
+  <a href="about.html">About</a>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -299,34 +301,40 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">How Majors Evolve</h1>
-<h4 class="author">Jacob Light</h4>
-<h4 class="date">6/25/2020</h4>
 
 </div>
 
 
 <p>The “Major Skills” project asks how colleges and universities respond to labor market shocks. Students choose the college they will attend and their college major to maximize their return on college attendance. The skills a student develops in college, as well as her innate aptitude, are valuable in the labor market. However, students face some uncertainty in their return on investment: globalization, the economy, and technology may increase or decrease the return to skills developed in college throughout a worker’s career. Universities compete to attract high aptitude students and equip these students with the skills to excel in the labor force.</p>
 <p>As skill demand in the labor force changes, how do universities adapt their course offerings? In practice, an institution can adjust course offerings along two dimensions: an <strong>intensive margin</strong>, through which an institution changes the content of an existing course, or an <strong>extensive margin</strong>, through which an institution introduces a new course. Below, I use the course catalog data to evaluate the extent to which institutions have evolved along intensive and extensive margins.</p>
-<p><strong>Intensive Margin Responses</strong>: First, I calculate the survival rate for course descriptions over a ten year period. I subset to courses offered continuously between 2010-11 and 2019-20. The survival function plots the share of courses with unchanged course description in each year 2010-11. Panel A plots the survival rate across all courses, while Panel B plots survival rates for five categories of college majors. The figures suggest that existing courses evolve slowly; the median course description is updated once per eight years. Survival rates are comparable across majors.</p>
+<div id="intensive-margin-responses" class="section level2">
+<h2>Intensive Margin Responses</h2>
+<p>First, I calculate the survival rate for course descriptions over a ten year period. I subset to courses offered continuously between 2010-11 and 2019-20. The survival function plots the share of courses with unchanged course description in each year 2010-11. Panel A plots the survival rate across all courses, while Panel B plots survival rates for five categories of college majors. The figures suggest that existing courses evolve slowly; the median course description is updated once per eight years. Survival rates are comparable across majors.</p>
 <div class="figure" style="text-align: center">
 <p class="caption">
 Course Description Survival Function
 </p>
 <img src="images/surv_paper.png" alt="Course Description Survival Function" width="100%" />
 </div>
-<p><strong>Extensive Margin Responses</strong>: Next, I calculate adjustment along the extensive margin through new course offerings. The figure counts the number of courses offered in each academic year for the panel of institutions covered 2010-2020 in my dataset, normalized to the number of courses offered in 2010-11. Panel A plots the overall trend in course offerings, which have steadily increased over time. The upward trend is consistent with increasing college enrollment, competition for smaller course sizes, and expanded access to colleges through the Common App. Panel B plots separate trends by major category. Growth in course offerings for STEM and Computer Science classes is most striking. The growth in Computer Science courses coincides with the introduction of information and data science courses at many colleges, as well as steadily increasing growth in the share of college graduates who major in STEM fields.</p>
+</div>
+<div id="extensive-margin-responses" class="section level2">
+<h2>Extensive Margin Responses</h2>
+<p>Next, I calculate adjustment along the extensive margin through new course offerings. The figure counts the number of courses offered in each academic year for the panel of institutions covered 2010-2020 in my dataset, normalized to the number of courses offered in 2010-11. Panel A plots the overall trend in course offerings, which have steadily increased over time. The upward trend is consistent with increasing college enrollment, competition for smaller course sizes, and expanded access to colleges through the Common App. Panel B plots separate trends by major category. Growth in course offerings for STEM and Computer Science classes is most striking. The growth in Computer Science courses coincides with the introduction of information and data science courses at many colleges, as well as steadily increasing growth in the share of college graduates who major in STEM fields.</p>
 <div class="figure" style="text-align: center">
 <p class="caption">
 Growth in Course Offerings
 </p>
 <img src="images/growth_paper.png" alt="Growth in Course Offerings" width="100%" />
 </div>
-<p><strong>Takeaways</strong>:</p>
+</div>
+<div id="takeaways" class="section level2">
+<h2>Takeaways:</h2>
 <ol style="list-style-type: decimal">
 <li><p>Existing courses in each category of college major evolve gradually. The typical course description is updated approximately once every seven years, suggesting that a long panel is necessary to document content changes over time</p></li>
 <li><p>New course offerings have grown substantially in the last ten years. The general upward trend coincides with growing college enrollment and competition for smaller class sizes</p></li>
 <li><p>The explosion of computer science courses over the last five years is particularly striking. Much of this growth arises from the introduction of data science and machine learning courses, contemporaneous with growth in labor market skill demand</p></li>
 </ol>
+</div>
 
 
 

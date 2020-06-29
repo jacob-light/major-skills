@@ -1,0 +1,13 @@
+---
+title: "About"
+output: html_document
+---
+
+<img src="images/jacob.jpg" style="width:40%; border:5 solid; margin-right: 20px" align="left">
+
+Jacob Light is a third-year Economics PhD student interested in the economics of education, labor, and public finance. 
+
+Jacob enjoys cooking, running, and travel.
+  
+
+  

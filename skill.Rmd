@@ -1,7 +1,5 @@
 ---
-title: "Skill Content"
-author: "Jacob Light"
-date: "6/25/2020"
+title: "Are All Skills Created Equal?"
 output: html_document
 ---
 
@@ -32,15 +30,15 @@ The figure below plots changes in skill offerings over time, relative to the cou
 ```
 
 
-**Takeaways**:
+## Takeaways
 
-  1. 
+  1. Deming and Kahn (2018) identify high-return skills in the labor market
   
-  2. 
+  2. The course catalog dataset confirms that high-return skills are emphasized in college courses across institutions
   
-  3. 
+  3. High-return skills appear with greater frequency in course descriptions at highly selective institutions
 
-**Sources**:
+## Sources
 
 Deming, David, and Lisa B. Kahn. ``Skill requirements across firms and labor markets: Evidence from job postings for professionals.'' Journal of Labor Economics 36, no. S1 (2018): S337-S369.
 

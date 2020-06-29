@@ -11,6 +11,8 @@ navbar:
       href: skill.html
     - text: "Networks"
       href: networks.html
+    - text: "About"
+      href: about.html
 output:
   html_document:
     theme: paper
