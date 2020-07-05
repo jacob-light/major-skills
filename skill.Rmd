@@ -30,7 +30,7 @@ The figure below plots changes in skill offerings over time, relative to the cou
 ```
 
 
-## Takeaways
+## Takeaways:
 
   1. Deming and Kahn (2018) identify high-return skills in the labor market
   
