@@ -1,0 +1,20 @@
+---
+title: "Course Offerings by Institution Characteristics"
+output: html_document
+runtime: shiny
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+```{r blah}
+# library(shiny)
+# knitr::include_app("https://jdlight.shinyapps.io/static_course_counts/")
+```
+
+
+
+
+

@@ -3,14 +3,16 @@ output_dir: "."
 navbar:
   title: "Major Skills"
   left:
-    - text: "The Data"
-      href: data.html
-    - text: "Evolution"
-      href: evolution.html
+    - text: "Data Coverage"
+      href: data_coverage.html
+    - text: "Course Distribution"
+      href: course_counts.html
+    - text: "Course Evolution"
+      href: time_series.html
     - text: "Skills"
       href: skill.html
-    - text: "Networks"
-      href: networks.html
+    - text: "Case Study - Stanford"
+      href: stanford.html
     - text: "About"
       href: about.html
 output:

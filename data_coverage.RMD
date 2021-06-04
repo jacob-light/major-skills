@@ -1,0 +1,18 @@
+---
+title: "Dataset coverage"
+output: html_document
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+The course catalog dataset contains a diverse sample of more than 5 million courses from nearly 300 institutions that broadly represent the approx. 2,500 degree granting Title-IV eligible higher education institutions in the United States. The sample contains public and private institutions, two- and four-year institutions, and institutions with a wide range of student enrollment. These sources of heterogeneity will be useful for understanding how outcomes student outcomes vary by institution characteristics, while allowing me to weight the sample to better represent the average college in the United States. The dataset is continuously expanding, both across time and institutions.
+
+Use the interactive tool below to see the geographic coverage of the course catalog dataset. 
+
+```{r deploy_app, echo = FALSE}
+knitr::include_app('https://jdlight.shinyapps.io/dataset_coverage/', '1000px')
+```
+

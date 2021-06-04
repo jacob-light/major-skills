@@ -1,0 +1,16 @@
+---
+title: "Course Offering Evolution"
+output: html_document
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The tool below shows how course offerings have evolved over a relatively short 10 year window. During this period, the United States emerged from a financial crisis that brought an end to booming demand for business/finance majors and saw a boom in enrollment in STEM/CS classes. These trends are largely reflected in the plots below, which summarize how the distribution of course offerings evolved over the last decade.
+
+
+```{r deploy_app, echo = FALSE}
+knitr::include_app('https://jdlight.shinyapps.io/time_series/', '1000px')
+```
+
