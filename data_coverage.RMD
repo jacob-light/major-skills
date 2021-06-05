@@ -3,15 +3,71 @@ title: "Dataset coverage"
 output: html_document
 ---
   
-```{r setup, include=FALSE}
+```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(fig.width = 9, fig.height = 6)
+
+# Packages
+library(dplyr)
+library(usmap)
+library(ggplot2)
+
+# Set theme
+theme_set(theme_bw())
+
+
+```
+
+```{r load_data, echo = FALSE}
+dat <- readRDS('catalogs_processed.RDS') %>%
+  .[['state_counts']]
+
 ```
 
 
 The course catalog dataset contains a diverse sample of more than 5 million courses from nearly 300 institutions that broadly represent the approx. 2,500 degree granting Title-IV eligible higher education institutions in the United States. The sample contains public and private institutions, two- and four-year institutions, and institutions with a wide range of student enrollment. These sources of heterogeneity will be useful for understanding how outcomes student outcomes vary by institution characteristics, while allowing me to weight the sample to better represent the average college in the United States. The dataset is continuously expanding, both across time and institutions.
 
-Use the interactive tool below to see the geographic coverage of the course catalog dataset. 
+
+The map below plots the geographic coverage of institutions in the catalog dataset. The states most represented in the catalog dataset are large states, such as California, Texas, New York, and Michigan.
+
+```{r count_map, echo = FALSE}
+
+plot_usmap(data = dat,
+           values = 'count',
+           color = 'black') +
+  scale_fill_continuous(low = "white",
+                        high = "navyblue",
+                        name = "Institution Count") +
+  theme(legend.position = "right") +
+  labs(title = 'Count Institutions in Catalog Dataset') +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    legend.text = element_text(size = 10)
+  ) +
+  guides(col = guide_legend("# of Institutions"))
+
+```
 
 
-<iframe width='1600px' height='1600px' src='https://jdlight.shinyapps.io/dataset_coverage/' >
-</iframe>
+The map below plots the share of institutions represented in the catalog dataset by state. Although the greatest number of institutions are in large states, the dataset has strongest coverage of states with a small number of institutions.
+
+```{r pct_map, echo = FALSE}
+
+
+plot_usmap(data = dat,
+           values = 'cover_share',
+           color = 'black') +
+  scale_fill_continuous(low = "white",
+                        high = "orange",
+                        name = "Institution Count") +
+  theme(legend.position = "right") +
+  labs(title = '% Coverage Institutions in Catalog Dataset') +
+  theme(
+    plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+    legend.text = element_text(size = 12)
+  ) +
+  guides(col = guide_legend("% of Institutions"))
+
+```
+
+
