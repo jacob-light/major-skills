@@ -11,7 +11,7 @@
 
 
 
-<title>How course offerings vary across institutions</title>
+<title>The Data</title>
 
 <script src="site_libs/header-attrs-2.3/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
@@ -303,14 +303,24 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">How course offerings vary across institutions</h1>
+<h1 class="title toc-ignore">The Data</h1>
 
 </div>
 
 
-<p>The American higher education system is comprised of institutions diverse in their selectivity, location, and the students that they serve. Each of these differences informs the educational experience available to students of these institutions. The tool below explores how educational offerings (the distribution of classes by department/major) vary across institutions by school category. Explore options below to see how course offerings in 2018 varied by different institutional categories.</p>
-<iframe width="1600px" height="1600px" src="https://jdlight.shinyapps.io/static_course_counts/">
-</iframe>
+<p>The dataset underlying this project contains course descriptions from a growing sample that currently covers 5% of non-profit degree granting colleges and universities in the United States. Colleges included in the sample are diverse along numerous dimensions. The sample contains institutions from more than 30 states, public and private institutions, two- and four-year institutions, and institutions with a wide range of student enrollment. These sources of heterogeneity will be useful for understanding how outcomes student outcomes vary by institution characteristics, while allowing me to weight the sample to better represent the average college in the United States.</p>
+<p>The histograms below summarize characteristics of the sample. My sample is drawn primarily from catalogs in html format. When available, web catalogs are generally available from the 2015-16 academic year onward, but coverage of earlier years is sparse. I am in the process of expanding my dataset to include pdf catalogs, which are more widely available but generally tougher to scrape.</p>
+<p><img src="images/obs_grid.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>For each course, I observe the: course title, course description, academic department, number of credits, career track (undergraduate vs. graduate), and any pre-requisites. Some institutions provide additional detail in the course description, such as instructor name or course enrollment. The figure below is an example of a typical observation in this dataset.</p>
+<p><img src="images/Example.png" width="80%" style="display: block; margin: auto;" /></p>
+<div id="takeaways" class="section level2">
+<h2>Takeaways:</h2>
+<ol style="list-style-type: decimal">
+<li><p>New, exciting dataset currently contains a diverse set of institutions and covers primarily 2010-2020.</p></li>
+<li><p>Working on expanding and diversifying the dataset.</p></li>
+<li><p>Course catalogs widely available online, in common format for easy scraping.</p></li>
+</ol>
+</div>
 
 
 

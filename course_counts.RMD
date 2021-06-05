@@ -9,7 +9,6 @@ knitr::opts_chunk$set(echo = TRUE)
 
 The American higher education system is comprised of institutions diverse in their selectivity, location, and the students that they serve. Each of these differences informs the educational experience available to students of these institutions. The tool below explores how educational offerings (the distribution of classes by department/major) vary across institutions by school category. Explore options below to see how course offerings in 2018 varied by different institutional categories.
 
-```{r deploy_app}
-knitr::include_app('https://jdlight.shinyapps.io/static_course_counts/', '1000px')
-```
 
+<iframe width='1600px' height='1600px' src='https://jdlight.shinyapps.io/static_course_counts/' >
+</iframe>

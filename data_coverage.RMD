@@ -12,7 +12,6 @@ The course catalog dataset contains a diverse sample of more than 5 million cour
 
 Use the interactive tool below to see the geographic coverage of the course catalog dataset. 
 
-```{r deploy_app, echo = FALSE}
-knitr::include_app('https://jdlight.shinyapps.io/dataset_coverage/', '1000px')
-```
 
+<iframe width='1600px' height='1600px' src='https://jdlight.shinyapps.io/dataset_coverage/' >
+</iframe>
